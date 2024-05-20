@@ -164,6 +164,13 @@ html {
   }
 }
 
+@media screen and (min-width: 1700px) {
+  #banner p {
+    text-align: center;
+    margin-left: 25px;
+  }
+}
+
 
 .texts span {
   color: #e0ed53;
@@ -214,7 +221,7 @@ html {
 
 /* contact us starts */
 .contact-form-contanier {
-  min-height: 100vh;
+  min-height: 80vh;
   width: 100%;
   background: #501d1d;
   display: flex;
@@ -395,6 +402,7 @@ html {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background: #0d222d;
 }
 
 .card-img img {

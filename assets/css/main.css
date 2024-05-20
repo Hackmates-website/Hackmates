@@ -2913,7 +2913,7 @@ button:disabled,
 }
 
 .wrapper>.inner {
-	width: 85em;
+	width: 75em;
 	/* margin: 0 auto; */
 }
 
@@ -3025,7 +3025,7 @@ button:disabled,
 
 .wrapper.style1 input[type="checkbox"]+label:before,
 .wrapper.style1 input[type="radio"]+label:before {
-	background: rgba(255, 255, 255, 0.075);
+	background: #0d2431;
 }
 
 .wrapper.style1 input[type="checkbox"]:checked+label:before,
