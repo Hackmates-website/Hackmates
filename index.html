@@ -54,9 +54,12 @@
           <img height="200px" width="200px" style="border-radius: 100%" src="./images/logo.webp" alt="" />
         </div>
         <h1>Hackmates</h1>
-        <p class="texts">
+        <p class="typeworks">
           When Security research is
-          <span></span>
+          <span class="txt-rotate" data-period="2000" data-rotate='[ "TOO COMPLEX",
+            "RIGHT AROUND THE CORNER",
+            "HEIGHLY DESIRED",
+            "NEEDED" ]'></span>
         </p>
       </div>
       <a href="#one" class="more scrolly">We Can Help</a>
@@ -97,7 +100,11 @@
         <ul class="features">
           <li class="card-view reverse-class">
             <div class="card-content">
-              <h3>Amit Serper</h3>
+              <h3 style="margin: 6px 0px;">Amit Serper</h3>
+              <a href="#" class="icon brands fa-twitter" style="font-size: 22px;  margin-right: 10px;"><span
+                  class="label">Twitter</span></a>
+              <a href="#" class="icon brands fa-linkedin" style="font-size: 22px;"><span
+                  class="label">Twitter</span></a>
               <p>
                 Amit Serper is a renowned security researcher with a distinguished career in cybersecurity. With over a
                 decade of experience, Amit has become a leading expert in threat intelligence, malware analysis, and
@@ -109,10 +116,6 @@
                 educating the next generation of cybersecurity experts. His passion for the field and commitment to
                 improving global cybersecurity standards have made him a respected and influential figure in the
                 industry.
-                <a href="#" class="icon brands fa-twitter" style="font-size: 25px;"><span
-                    class="label">Twitter</span></a>
-                <a href="#" class="icon brands fa-linkedin" style="font-size: 25px;"><span
-                    class="label">Twitter</span></a>
               </p>
             </div>
             <div class="card-img">
@@ -125,7 +128,10 @@
             </div>
             <div class="card-content">
 
-              <h3>Eliad Kimhy</h3>
+              <h3 style="margin: 6px 0px;">Eliad Kimhy</h3>
+              <a href="#" class="icon brands fa-twitter" style="font-size: 22px;"><span class="label">Twitter</span></a>
+              <a href="#" class="icon brands fa-linkedin" style="font-size: 22px; margin-left: 10px;"><span
+                  class="label">Twitter</span></a>
               <p>
                 Eliad is a leader of security content teams, security research production, and cybersecurity marketing.
                 He was one of the creators and producers of the podcast Malicious Life which tells stories from the
@@ -135,10 +141,6 @@
                 Eliad has worked with security teams for many years, guiding the development of security research work,
                 blogs, and reports, and helping build security research publishing operations for large companies. He
                 has spoken at conferences such as BsidesLV, Insomnihack, Thotcon, BsidesSF, Code.talks, and others.
-                <a href="#" class="icon brands fa-twitter" style="font-size: 25px;"><span
-                    class="label">Twitter</span></a>
-                <a href="#" class="icon brands fa-linkedin" style="font-size: 25px;"><span
-                    class="label">Twitter</span></a>
               </p>
             </div>
 
@@ -478,134 +480,65 @@
 <script>
   AOS.init();
 </script>
+
 <script>
-  const dynamicText = document.querySelector(".texts span");
-  const words = [
-    "TOO COMPLEX",
-    "RIGHT AROUND THE CORNER",
-    "HEIGHLY DESIRED",
-    "NEEDED",
-  ];
-
-  // Variables to track the position and deletion status of the word
-  let wordIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-
-  const typeEffect = () => {
-    const currentWord = words[wordIndex];
-    const currentChar = currentWord.substring(0, charIndex);
-    dynamicText.textContent = currentChar;
-    dynamicText.classList.add("stop-blinking");
-
-    if (!isDeleting && charIndex < currentWord.length) {
-      // If condition is true, type the next character
-      charIndex++;
-      setTimeout(typeEffect, 200);
-    } else if (isDeleting && charIndex > 0) {
-      // If condition is true, remove the previous character
-      charIndex--;
-      setTimeout(typeEffect, 100);
-    } else {
-      // If word is deleted then switch to the next word
-      isDeleting = !isDeleting;
-      dynamicText.classList.remove("stop-blinking");
-      wordIndex = !isDeleting ? (wordIndex + 1) % words.length : wordIndex;
-      setTimeout(typeEffect, 1200);
-    }
+  /*  Typewriter animation   */
+  var TxtRotate = function (el, toRotate, period) {
+    this.toRotate = toRotate;
+    this.el = el;
+    this.loopNum = 0;
+    this.period = parseInt(period, 10) || 2000;
+    this.txt = '';
+    this.tick();
+    this.isDeleting = false;
   };
 
-  typeEffect();
+  TxtRotate.prototype.tick = function () {
+    var i = this.loopNum % this.toRotate.length;
+    var fullTxt = this.toRotate[i];
 
+    if (this.isDeleting) {
+      this.txt = fullTxt.substring(0, this.txt.length - 1);
+    } else {
+      this.txt = fullTxt.substring(0, this.txt.length + 1);
+    }
 
+    this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
 
-  let close = document.getElementById("close");
-  close.addEventListener("click", () => {
-    gsap.to(".navbar .main", {
-      left: "-100%",
-    });
-  });
+    var that = this;
+    var delta = 300 - Math.random() * 100;
 
-  let open = document.getElementById("open");
-  open.addEventListener("click", () => {
-    gsap.to(".navbar .main", {
-      left: "0%",
-    });
-  });
+    if (this.isDeleting) { delta /= 2; }
 
-  // Close side navbar when a link is clicked on mobile devices
-  document.querySelectorAll('.main ul li a').forEach(link => {
-    link.addEventListener('click', () => {
-      gsap.to(".navbar .main", {
-        left: "-100%",
-      });
-    });
-  });
+    if (!this.isDeleting && this.txt === fullTxt) {
+      delta = this.period;
+      this.isDeleting = true;
+    } else if (this.isDeleting && this.txt === '') {
+      this.isDeleting = false;
+      this.loopNum++;
+      delta = 500;
+    }
 
+    setTimeout(function () {
+      that.tick();
+    }, delta);
+  };
 
-
-  /* pop-up cards   */
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll('.cardes');
-    const popup = document.getElementById('popup');
-    const closeBtn = document.getElementById('close-popup');
-    const popupImg = document.getElementById('popup-img');
-    const popupTitle = document.getElementById('popup-title');
-    const popupDescription = document.getElementById('popup-description');
-
-    cards.forEach(card => {
-      card.addEventListener('click', () => {
-        const imgSrc = card.getAttribute('data-img');
-        const title = card.getAttribute('data-title');
-        const description = card.getAttribute('data-description');
-
-        popupImg.src = imgSrc;
-        popupTitle.textContent = title;
-        popupDescription.textContent = description;
-
-        popup.style.display = 'flex';
-      });
-    });
-
-    closeBtn.addEventListener('click', () => {
-      popup.style.display = 'none';
-    });
-
-    window.addEventListener('click', (event) => {
-      if (event.target === popup) {
-        popup.style.display = 'none';
+  window.onload = function () {
+    var elements = document.getElementsByClassName('txt-rotate');
+    for (var i = 0; i < elements.length; i++) {
+      var toRotate = elements[i].getAttribute('data-rotate');
+      var period = elements[i].getAttribute('data-period');
+      if (toRotate) {
+        new TxtRotate(elements[i], JSON.parse(toRotate), period);
       }
-    });
-  });
-
-
-  /*=============== SWIPER JS ===============*/
-  let swiperCards = new Swiper(".card__content", {
-    loop: true,
-    spaceBetween: 32,
-    grabCursor: true,
-
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-      dynamicBullets: true,
-    },
-
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-
-    breakpoints: {
-      600: {
-        slidesPerView: 2,
-      },
-      968: {
-        slidesPerView: 3,
-      },
-    },
-  });
+    }
+    // INJECT CSS
+    var css = document.createElement("style");
+    css.type = "text/css";
+    css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #e0ed53 }";
+    document.body.appendChild(css);
+  };
 </script>
 
 </html>
