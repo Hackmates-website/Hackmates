@@ -482,6 +482,35 @@
 </script>
 
 <script>
+  /*=============== SWIPER JS ===============*/
+  let swiperCards = new Swiper(".card__content", {
+    loop: true,
+    spaceBetween: 32,
+    grabCursor: true,
+
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      dynamicBullets: true,
+    },
+
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+
+    breakpoints: {
+      600: {
+        slidesPerView: 2,
+      },
+      968: {
+        slidesPerView: 3,
+      },
+    },
+  });
+</script>
+
+<script>
   /*  Typewriter animation   */
   var TxtRotate = function (el, toRotate, period) {
     this.toRotate = toRotate;
@@ -503,7 +532,7 @@
       this.txt = fullTxt.substring(0, this.txt.length + 1);
     }
 
-    this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
+    this.el.innerHTML = '<span class="grapes">' + this.txt + '</span>';
 
     var that = this;
     var delta = 300 - Math.random() * 100;
@@ -536,9 +565,73 @@
     // INJECT CSS
     var css = document.createElement("style");
     css.type = "text/css";
-    css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #e0ed53 }";
+    css.innerHTML = ".txt-rotate > .grapes { border-right: 0.08em solid #e0ed53 }";
     document.body.appendChild(css);
   };
+</script>
+
+<script>
+  // Mobile work
+  let close = document.getElementById("close");
+  close.addEventListener("click", () => {
+    gsap.to(".navbar .main", {
+      left: "-100%",
+    });
+  });
+
+  let open = document.getElementById("open");
+  open.addEventListener("click", () => {
+    gsap.to(".navbar .main", {
+      left: "0%",
+    });
+  });
+
+  // Close side navbar when a link is clicked on mobile devices
+  document.querySelectorAll('.main ul li a').forEach(link => {
+    link.addEventListener('click', () => {
+      gsap.to(".navbar .main", {
+        left: "-100%",
+      });
+    });
+  });
+</script>
+
+<script>
+  /* pop-up cards   */
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.cardes');
+    const popup = document.getElementById('popup');
+    const closeBtn = document.getElementById('close-popup');
+    const popupImg = document.getElementById('popup-img');
+    const popupTitle = document.getElementById('popup-title');
+    const popupDescription = document.getElementById('popup-description');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const imgSrc = card.getAttribute('data-img');
+        const title = card.getAttribute('data-title');
+        const description = card.getAttribute('data-description');
+
+        popupImg.src = imgSrc;
+        popupTitle.textContent = title;
+        popupDescription.textContent = description;
+
+        popup.style.display = 'flex';
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      popup.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+      if (event.target === popup) {
+        popup.style.display = 'none';
+      }
+    });
+  });
+
 </script>
 
 </html>
