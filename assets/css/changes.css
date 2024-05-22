@@ -201,56 +201,12 @@ html {
   justify-content: space-between;
 }
 
-.contact-form .content .left-side {
-  width: 25%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 15px;
-  position: relative;
+.contact-form .right-side {
+  width: 100%;
+  margin-left: 10px;
 }
 
-.content .left-side::before {
-  content: '';
-  position: absolute;
-  height: 70%;
-  width: 2px;
-  right: -15px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #ffffff;
-}
-
-.content .left-side .details {
-  margin: 14px;
-  text-align: center;
-}
-
-.content .left-side .details i {
-  font-size: 30px;
-  color: #ffffff;
-  margin-bottom: 10px;
-}
-
-.content .left-side .details .topic {
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.content .left-side .details .text-one,
-.content .left-side .details .text-two {
-  font-size: 14px;
-  color: #ffffff;
-}
-
-.contact-form .content .right-side {
-  width: 75%;
-  margin-left: 75px;
-}
-
-.content .right-side .topic-text {
+.right-side .topic-text {
   font-size: 23px;
   font-weight: 600;
   color: #ffffff;
@@ -799,15 +755,7 @@ html {
 
 
 
-
-
-
-
-
-
-
-
-
+/* services cards */
 
 .pricing {
   display: flex;
@@ -817,7 +765,7 @@ html {
   .plan {
     background-color: #000000;
     padding: 1.5rem;
-    margin: 12px 25px;
+    margin: 24px 15px;
     border-radius: 5px;
     text-align: center;
     transition: 0.3s;
@@ -872,6 +820,20 @@ html {
         padding: 4px 20px;
         font-size: 18px;
         border-radius: 5px;
+      }
+
+      @media screen and (max-width: 500px) {
+        span {
+          padding: 4px 10px;
+          font-size: 14px;
+        }
+      }
+
+      @media screen and (max-width: 370px) {
+        span {
+          padding: 4px 5px;
+          font-size: 12px;
+        }
       }
     }
 
