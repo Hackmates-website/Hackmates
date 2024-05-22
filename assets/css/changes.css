@@ -147,7 +147,29 @@ html {
 /* Home page settings  starts */
 
 .inner h1 {
-  font-size: 30px;
+  font-size: 35px;
+}
+
+@media screen and (min-width: 1400px) {
+  .inner .logo img {
+    height: 400px;
+    width: 400px;
+  }
+
+  .inner h1 {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .inner .logo img {
+    height: 150px;
+    width: 150px;
+  }
+
+  .inner h1 {
+    font-size: 25px;
+  }
 }
 
 #banner p {
@@ -170,6 +192,20 @@ html {
     text-align: left;
     margin: auto 40%;
   }
+}
+
+@media screen and (max-width: 430px) {
+  #banner p {
+    font-size: 20px;
+    text-align: left;
+    margin: auto 0%;
+  }
+
+  /* #banner p {
+    font-size: 25px;
+    text-align: center;
+    margin: auto 0%;
+  } */
 }
 
 .typeworks span {
