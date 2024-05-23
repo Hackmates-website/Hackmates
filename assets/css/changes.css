@@ -206,7 +206,7 @@ html {
 
 /* contact us starts */
 .contact-form-contanier {
-  height: auto;
+  height: 85vh;
   width: 100%;
   background: #501d1d;
   display: flex;
