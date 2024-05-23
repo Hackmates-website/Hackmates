@@ -150,17 +150,6 @@ html {
   font-size: 35px;
 }
 
-@media screen and (min-width: 1400px) {
-  .inner .logo img {
-    height: 400px;
-    width: 400px;
-  }
-
-  .inner h1 {
-    font-size: 40px;
-  }
-}
-
 @media screen and (max-width: 370px) {
   .inner .logo img {
     height: 150px;
