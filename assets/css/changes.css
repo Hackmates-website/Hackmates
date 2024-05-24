@@ -176,13 +176,14 @@ html {
   font-size: 25px;
   text-align: left;
   margin: auto 15%;
+  height: 10px;
 }
 
 @media screen and (min-width: 1800px) {
   #banner p {
     font-size: 25px;
     text-align: left;
-    margin: auto 25%;
+    margin: auto 22%;
   }
 }
 
@@ -190,9 +191,18 @@ html {
   #banner p {
     font-size: 25px;
     text-align: left;
-    margin: auto 40%;
+    margin: auto 34%;
   }
 }
+
+
+@media screen and (max-width: 730px) {
+  #banner p {
+    height: 100px;
+  }
+
+}
+
 
 @media screen and (max-width: 430px) {
   #banner p {
@@ -201,11 +211,6 @@ html {
     margin: auto 0%;
   }
 
-  /* #banner p {
-    font-size: 25px;
-    text-align: center;
-    margin: auto 0%;
-  } */
 }
 
 .typeworks span {
@@ -217,8 +222,6 @@ html {
 
 /* contact us starts */
 .contact-form-contanier {
-  height: 85vh;
-  width: 100%;
   background: #501d1d;
   display: flex;
   align-items: center;
